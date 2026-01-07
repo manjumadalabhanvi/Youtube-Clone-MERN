@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from 'mongoose';
 import authRoutes from "./routes/authRoutes.js";
 import authMiddleware from "./middleware/authMiddleware.js";
+import videoRoutes from "./routes/videoRoutes.js";
 dotenv.config();
 const app=express();
 
@@ -23,6 +24,7 @@ mongoose
 
   // routes
 app.use("/api/auth", authRoutes);
+app.use("/api/videos", videoRoutes);
 
 // test route
 app.get("/",(req,res)=>{
@@ -35,6 +37,8 @@ app.get("/api/protected", authMiddleware, (req, res) => {
     userId: req.user.id,
   });
 });
+
+
 
 export default app;
 
