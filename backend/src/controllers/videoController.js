@@ -28,3 +28,42 @@ export const uploadVideo = async (req, res) => {
   }
 };
 
+export const getAllVideos = async (req, res) => {
+  try {
+    const videos = await Video.find()
+      .populate("user", "username email")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(videos);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch videos",
+    });
+  }
+};
+
+export const getVideoById = async (req, res) => {
+  try {
+    const video = await Video.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { views: 1 } },
+      { new: true }
+    ).populate("user", "username email");
+
+    if (!video) {
+      return res.status(404).json({
+        message: "Video not found",
+      });
+    }
+
+    res.status(200).json(video);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch video",
+    });
+  }
+};
+
+
+
+
