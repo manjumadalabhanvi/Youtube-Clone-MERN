@@ -6,8 +6,9 @@ import { likeVideo,dislikeVideo } from "../controllers/videoController.js";
 const router = express.Router();
 
 // upload video (protected)
-router.post("/upload", authMiddleware, uploadVideo);
+
 router.get("/", getAllVideos);
+router.post("/",authMiddleware,uploadVideo);
 router.get("/:id", getVideoById);
 router.put("/like/:id", authMiddleware, likeVideo);
 router.put("/dislike/:id", authMiddleware, dislikeVideo);

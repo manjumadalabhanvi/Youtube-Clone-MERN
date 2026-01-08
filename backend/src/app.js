@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import authRoutes from "./routes/authRoutes.js";
 import authMiddleware from "./middleware/authMiddleware.js";
 import videoRoutes from "./routes/videoRoutes.js";
+import commentRoutes from './routes/commentRoutes.js'
 dotenv.config();
 const app=express();
 
@@ -25,6 +26,7 @@ mongoose
   // routes
 app.use("/api/auth", authRoutes);
 app.use("/api/videos", videoRoutes);
+app.use("/api/comments", commentRoutes);
 
 // test route
 app.get("/",(req,res)=>{
