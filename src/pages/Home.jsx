@@ -13,10 +13,8 @@ function Home() {
     const fetchVideos = async () => {
       try {
         const res = await axios.get(
-
-`http://localhost:5000/api/videos?category=${selectedCategory}&search=${search}`
-
-);
+          `http://localhost:5000/api/videos?category=${selectedCategory}&search=${search}`,
+        );
 
         setVideos(res.data);
       } catch (err) {
@@ -29,7 +27,7 @@ function Home() {
 
   return (
     <div className="bg-black min-h-screen">
-      <Navbar setSearch={setSearch}/>
+      <Navbar setSearch={setSearch} />
 
       <div className="flex">
         <Sidebar />
